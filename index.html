@@ -1,0 +1,158 @@
+<html><head><base href=".">
+<title>Void Striker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainMenu">
+    <h1 class="menuTitle">VOID STRIKER</h1>
+    <button class="startButton" onclick="showDifficultySelect()">START GAME</button>
+    <button class="startButton" style="margin-top: 20px;" onclick="showInstructions()">INSTRUCTIONS</button>
+    <button class="startButton" style="margin-top: 20px;" onclick="showEnemyGuide()">ENEMY GUIDE</button>
+    <button class="startButton" style="margin-top: 20px;" onclick="showShop()">SHOP</button>
+</div>
+
+<div id="shopMenu">
+    <h1 class="menuTitle">SHOP</h1>
+    <div id="shopMoneyDisplay">&#x24;0</div>
+    
+    <div id="shopContainer">
+        <div class="shop-nav">
+            <button class="active" onclick="switchShopPage(1)">Regular Upgrades</button>
+            <button onclick="switchShopPage(2)">Gun Upgrades</button>
+            <button onclick="switchShopPage(3)">Quests</button>
+        </div>
+        <div class="upgrade-grid"></div>
+    </div>
+    
+    <div style="width: 100%; display: flex; justify-content: center;">
+        <button class="startButton" style="margin-top: 40px;" onclick="hideShop()">BACK</button>
+    </div>
+</div>
+
+<div id="enemyGuideMenu" style="display: none;">
+    <div style="
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            45deg,
+            #2b1055,
+            #2b1055 50px,
+            #4527a0 50px,
+            #4527a0 100px
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+        box-sizing: border-box;
+        z-index: 100;
+        overflow-y: auto;
+    ">
+        <h1 class="menuTitle" style="margin-bottom: 40px;">ENEMY GUIDE</h1>
+        
+        <div class="enemy-guide show" style="margin: 0;">
+            <h2>Enemy Types:</h2>
+            <ul>
+                <li>Normal - Basic enemy</li>
+                <li>Gunner - Shoots projectiles</li>
+                <li>Splitter - Splits into two on death</li>
+                <li>Necromancer - Spawns normal enemies</li>
+                <li>Support - Buffs other enemies</li>
+                <li>Boss - Super powerful variant</li>
+            </ul>
+            <h2>Enemy Classes (Wave 5+):</h2>
+            <ul>
+                <li>Average - Normal stats</li>
+                <li>Elite - 2x stats</li>
+                <li>Celestial - 4x stats + special ability</li>
+            </ul>
+        </div>
+        
+        <button class="startButton" style="margin-top: 40px;" onclick="hideEnemyGuide()">BACK</button>
+    </div>
+</div>
+
+<div id="instructionsMenu" style="display: none;">
+    <div style="
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            45deg,
+            #2b1055,
+            #2b1055 50px,
+            #4527a0 50px,
+            #4527a0 100px
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+        box-sizing: border-box;
+        z-index: 100;
+        overflow-y: auto;
+    ">
+        <h1 class="menuTitle" style="margin-bottom: 40px;">INSTRUCTIONS</h1>
+        
+        <div class="instructions-guide show" style="margin: 0;">
+            <h2 style="color: #7e57c2; margin-bottom: 20px;">Controls:</h2>
+            <p>WASD - Move your ship</p>
+            <p>SPACE or LEFT MOUSE BUTTON - Hold to charge shot, release to fire</p>
+            <p>Mouse - Aim where to shoot</p>
+            <p>K - Skip wave (when available)</p>
+            
+            <h2 style="color: #7e57c2; margin: 30px 0 20px;">Gameplay:</h2>
+            <p>- Survive waves of enemies</p>
+            <p>- Charge shots for more damage</p>
+            <p>- Stay within the arena boundaries</p>
+            <p>- Kill enemies to earn money</p>
+            <p>- Visit shop between waves to upgrade</p>
+            <p>- Chain kills to build style meter</p>
+        </div>
+        
+        <button class="startButton" style="margin-top: 40px;" onclick="hideInstructions()">BACK</button>
+    </div>
+</div>
+<div id="difficultyMenu" style="display: none;">
+    <div style="
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            45deg,
+            #2b1055,
+            #2b1055 50px,
+            #4527a0 50px,
+            #4527a0 100px
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+    ">
+        <h1 class="menuTitle" style="margin-bottom: 40px;">SELECT DIFFICULTY</h1>
+        <div class="difficulty-select" style="display: flex;">
+            <button class="difficulty-btn" onclick="selectDifficultyAndStart('easy')" style="background: #4caf50;">EASY</button>
+            <button class="difficulty-btn" onclick="selectDifficultyAndStart('normal')" style="background: #3f51b5;">NORMAL</button>
+            <button class="difficulty-btn" onclick="selectDifficultyAndStart('hard')" style="background: #ff5722;">HARD</button>
+            <button class="difficulty-btn" onclick="selectDifficultyAndStart('insane')" style="background: #f44336;">INSANE</button>
+        </div>
+        <button class="startButton" style="margin-top: 40px;" onclick="hideDifficultySelect()">BACK</button>
+    </div>
+</div>
+<canvas id="gameCanvas"></canvas>
+<div id="moneyDisplay">&#x24;0</div>
+<button id="backButton" onclick="returnToMenu()">BACK</button>
+<audio id="backgroundMusic" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+<div id="hud">
+    HP: 100<br>
+    Wave: 1<br>
+    Time: 20
+</div>
+<script src="script.js"></script>
+</body>
+</html>
